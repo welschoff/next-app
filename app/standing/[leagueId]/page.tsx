@@ -13,18 +13,28 @@ export default async function Leagues({
 
   return (
     <>
-      <div className="flex flex-col gap-3 divide-y">
+      <div className="flex flex-col gap-3 divide-y text-sm">
         {data.data.response.map((league: any) => {
           return league.league.standings[0].map((standing: any) => (
-            <div className="flex gap-2 content-center">
-              <span>{standing.rank}</span>
-              <Image
-                src={standing.team.logo}
-                width={30}
-                height={30}
-                alt="logo"
-              />
-              <span>{standing.team.name}</span>
+            <div className="flex content-center justify-between">
+              <div className="flex gap-x-2">
+                <span className="self-center font-bold">{standing.rank}</span>
+                <Image
+                  src={standing.team.logo}
+                  width={30}
+                  height={30}
+                  alt="logo"
+                />
+                <span className="self-center">{standing.team.name}</span>
+              </div>
+              <div className="flex gap-x-2">
+                <span>{standing.all.played}</span>
+                <span>
+                  {standing.all.goals.for}:{standing.all.goals.against}
+                </span>
+                <span>{standing.goalsDiff}</span>
+                <span className="font-bold">{standing.points}</span>
+              </div>
             </div>
           ));
         })}

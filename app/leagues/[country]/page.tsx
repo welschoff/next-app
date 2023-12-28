@@ -11,21 +11,23 @@ export default async function Leagues({
   );
   const data = await res.json();
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col divide-y divide-black justify-center">
       {data.data.response.map((league: any) => {
         return (
           <Link href={`/standing/${league.league.id}`}>
             <div
               key={league.league.id}
-              className="flex content-center items-center gap-2"
+              className="flex flex-row p-4 gap-x-5 h-[80px]"
             >
-              <Image
-                src={league.league.logo}
-                alt="logo"
-                width={50}
-                height={50}
-              />
-              <span className="">{league.league.name}</span>
+              <div className="relative min-w-[50px]">
+                <Image
+                  src={league.league.logo}
+                  alt="logo"
+                  fill={true}
+                  className="object-contain"
+                />
+              </div>
+              <span className="self-center">{league.league.name}</span>
             </div>
           </Link>
         );

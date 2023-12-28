@@ -14,16 +14,21 @@ export async function CountryList() {
     <div className="flex flex-col divide-y divide-black justify-center">
       {data.data.response.map((country: any) => {
         return (
-          <div key={country.code} className="flex flex-row p-4 gap-x-3">
-            {country.flag && (
-              <Image
-                src={country.flag}
-                style={imageStyle}
-                alt="flag"
-                width={50}
-                height={50}
-              />
-            )}
+          <div
+            key={country.code}
+            className="flex flex-row p-4 gap-x-5 h-[80px]"
+          >
+            <div className="relative min-w-[50px]">
+              {country.flag && (
+                <Image
+                  src={country.flag}
+                  style={imageStyle}
+                  alt="flag"
+                  fill={true}
+                  className="object-contain"
+                />
+              )}
+            </div>
             <Link href={`/leagues/${country.name}`} className="self-center">
               {country.name}
             </Link>
