@@ -5,18 +5,28 @@ export async function CountryList() {
   const res = await fetch("http://localhost:3000/api/countries");
   const data = await res.json();
 
+  const imageStyle = {
+    borderRadius: "50%",
+    border: "1px solid grey",
+  };
+
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col divide-y divide-black justify-center">
       {data.data.response.map((country: any) => {
         return (
-          <div
-            key={country.code}
-            className="flex flex-row gap-x-1 p-1 items-center bg-slate-200 w-4/5 border-2 border-black rounded-lg"
-          >
+          <div key={country.code} className="flex flex-row p-4 gap-x-3">
             {country.flag && (
-              <Image src={country.flag} width={50} height={50} alt="flag" />
+              <Image
+                src={country.flag}
+                style={imageStyle}
+                alt="flag"
+                width={50}
+                height={50}
+              />
             )}
-            <Link href={`/leagues/${country.name}`}>{country.name}</Link>
+            <Link href={`/leagues/${country.name}`} className="self-center">
+              {country.name}
+            </Link>
           </div>
         );
       })}
